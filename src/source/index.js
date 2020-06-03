@@ -1,0 +1,75 @@
+const { bn } = require('@asefux/common');
+
+const Base = require('./base');
+const BankOfCanada = require('./bank-of-canada');
+const DanmarkNationalBank = require('./danmark-national-bank');
+const BankOfEstonia = require('./eesti-pank');
+
+const createSources = () => {
+  const Sources = [
+    BankOfCanada, DanmarkNationalBank, BankOfEstonia,
+  ];
+
+  const sources = Sources.reduce((result, Source) => {
+    const source = Source.create ? Source.create() : new Source();
+    return {
+      ...result,
+      [source.symbol]: source,
+    };
+  }, {});
+
+  sources.syncNoWait = () => {
+    Object.values(sources).forEach((v) => {
+      if (v && v.fetch) {
+        v.fetch();
+      }
+    });
+  };
+  sources.matrix = async (digits = 4) => {
+    const listOfMatrices = await Object.values(sources).reduce(async (pr, v) => {
+      const prevR = await pr;
+      let info = null;
+      if (v && v.getMatrix) {
+        info = await v.getMatrix();
+        if (info) {
+          prevR.push(info);
+        }
+      }
+      return prevR;
+    }, Promise.resolve([]));
+    const matrix = listOfMatrices.reduce((r, m) => Object.entries(m).reduce((bases, [base, prices]) => {
+      if (!bases[base]) {
+        return {
+          ...bases,
+          [base]: Object.entries(prices).reduce((r, [quote, price]) => ({
+            ...r,
+            [quote]: bn(price).toFixed(digits),
+          }), {}),
+        };
+      }
+      return {
+        ...bases,
+        [base]: Object.entries(prices).reduce((pairs, [quote, price]) => {
+          if (!pairs[quote]) {
+            return { ...pairs, [quote]: bn(price).toFixed(digits) };
+          }
+          // return pairs;
+          return {
+            ...pairs,
+            [quote]: bn(price).plus(pairs[quote]).dividedBy(2).toFixed(digits),
+          };
+        }, bases[base]),
+      };
+    }, r), {});
+    return matrix;
+  };
+
+  return sources;
+};
+
+module.exports = {
+  Base,
+  BankOfCanada,
+  DanmarkNationalBank,
+  createSources,
+};
