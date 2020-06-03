@@ -1,4 +1,4 @@
-const { string: { compile, toSymbolKey } } = require('@asefux/common');
+const { string: { compile, toSymbolKey }, bn } = require('@asefux/common');
 const got = require('got');
 
 const Base = require('./base');
@@ -29,6 +29,10 @@ class Source extends Base {
       return {
         ...r,
         [toSymbolKey(currency)]: { [this.quote]: value.v },
+        [this.quote]: {
+          ...(r[this.quote] || {}),
+          [toSymbolKey(currency)]: bn(1).dividedBy(value.v).toFixed(4),
+        },
       };
     }, {});
 

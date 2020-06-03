@@ -26,15 +26,17 @@ class Source extends Base {
       ...r,
       [this.quote]: {
         ...(r[this.quote] || {}),
-        [toSymbolKey(base)]: this.deno.dividedBy(rate).toFixed(4),
+        [toSymbolKey(base)]: bn(rate).toFixed(4),
 
       },
       [toSymbolKey(base)]: {
         ...(r[toSymbolKey(base)] || {}),
-        [this.quote]: bn(rate).toFixed(4),
+        [this.quote]: this.deno.dividedBy(rate).toFixed(4),
       },
     });
-    return elements.reduce(reducer.bind(this), {});
+    const merged = elements.reduce(reducer.bind(this), {});
+
+    return merged;
   }
 
   create() {

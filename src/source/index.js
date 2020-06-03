@@ -43,7 +43,7 @@ const createSources = () => {
           ...bases,
           [base]: Object.entries(prices).reduce((r, [quote, price]) => ({
             ...r,
-            [quote]: bn(price).toFixed(digits),
+            [quote]: [bn(price).toFixed(digits)],
           }), {}),
         };
       }
@@ -51,19 +51,24 @@ const createSources = () => {
         ...bases,
         [base]: Object.entries(prices).reduce((pairs, [quote, price]) => {
           if (!pairs[quote]) {
-            return { ...pairs, [quote]: bn(price).toFixed(digits) };
+            return { ...pairs, [quote]: [bn(price).toFixed(digits)] };
           }
           // return pairs;
-          return {
-            ...pairs,
-            [quote]: bn(price).plus(pairs[quote]).dividedBy(2).toFixed(digits),
-          };
+          pairs[quote].push(price);
+          return pairs;
         }, bases[base]),
       };
     }, r), {});
-    return matrix;
-  };
 
+
+    return Object.entries(matrix).reduce((m, [base, prices]) => ({
+      ...m,
+      [base]: Object.entries(prices).reduce((avg, [quote, observations]) => ({
+        ...avg,
+        [quote]: observations.reduce((s, p) => s.plus(p), bn(0)).dividedBy(observations.length).toFixed(digits),
+      }), {}),
+    }), {});
+  };
   return sources;
 };
 
