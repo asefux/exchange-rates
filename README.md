@@ -11,7 +11,7 @@ gather exchange-rates from muiltiplie national banks
 - [x] [Bank of Sweden / Sveriges Riksbank](https://www.riksbank.se/en-gb/)
 - [x] [Bank of Norway / Norges Bank](https://www.norges-bank.no/en/)
 - [x] [European Central Bank](https://ecb.europa.eu)
-- [ ] [Bank of Romania / Banca Nationala a Romaniei](https://www.bnro.ro/Home.aspx)
+- [x] [Bank of Romania / Banca Nationala a Romaniei](https://www.bnro.ro/Home.aspx)
 - [ ] [Bank of Hungary / Magyar Nemzeti Bank](https://www.mnb.hu/en/)
 - [ ] [Bank of Bulgaria](http://www.bnb.bg/?toLang=_EN)
 - [ ] [Bank of Finland / Suomen Pankki](https://www.suomenpankki.fi/en/)
