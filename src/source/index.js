@@ -6,6 +6,7 @@ const DanmarkNationalBank = require('./danmark-national-bank');
 const BankOfEstonia = require('./eesti-pank');
 const BankOfSweden = require('./bank-of-sweden');
 const BankOfNorway = require('./bank-of-norway');
+const EuropeanCentralBank = require('./european-central-bank');
 
 const createSources = () => {
   const Sources = [
@@ -14,6 +15,7 @@ const createSources = () => {
     BankOfEstonia,
     BankOfSweden,
     BankOfNorway,
+    EuropeanCentralBank,
   ];
 
   const sources = Sources.reduce((result, Source) => {
