@@ -41,8 +41,8 @@ Rates matrix of this format
 - [x] [Bank of Norway / Norges Bank](https://www.norges-bank.no/en/)
 - [x] [European Central Bank](https://ecb.europa.eu)
 - [x] [Bank of Romania / Banca Nationala a Romaniei](https://www.bnro.ro/Home.aspx)
+- [x] [Bank of Bulgaria](http://www.bnb.bg/?toLang=_EN)
 - [ ] [Bank of Hungary / Magyar Nemzeti Bank](https://www.mnb.hu/en/)
-- [ ] [Bank of Bulgaria](http://www.bnb.bg/?toLang=_EN)
 - [ ] [Bank of Netherlands / De Nederlandsche Bank](https://www.dnb.nl/en/)
 - [ ] [Bank of England](https://www.bankofengland.co.uk/)
 - [ ] [Bank of France / Banque de France](https://www.banque-france.fr/en)
@@ -79,3 +79,13 @@ Rates matrix of this format
 - [ ] [Bank of Finland / Suomen Pankki](https://www.suomenpankki.fi/en/) - same as ECB
 
 - [ ] [Others](https://www.bis.org/cbanks.htm)
+
+
+
+# Changes
+
+| Version     |   Changes       |
+|-------------|-----------------|
+| 1.0.0       | initial code    |
+| 1.0.1       | update api      |
+| 1.1.0       | Bank of Bulgaria|

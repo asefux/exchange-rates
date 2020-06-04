@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, class-methods-use-this */
 const { string: { toSymbolKey }, uuid } = require('@asefux/common');
 
 class SourceBase {
@@ -14,7 +15,7 @@ class SourceBase {
     this._matrix = {};
     this.lastFetched = null;
     this.maxCacheTime = maxCacheTime;
-    this._decimals = 8;
+    this._decimals = decimals;
   }
 
   get decimals() {
