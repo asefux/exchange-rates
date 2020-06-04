@@ -8,6 +8,7 @@ const BankOfSweden = require('./bank-of-sweden');
 const BankOfNorway = require('./bank-of-norway');
 const EuropeanCentralBank = require('./european-central-bank');
 const BankOfRomania = require('./bank-of-romania');
+const BankOfBulgaria = require('./bank-of-bulgaria');
 
 const createSources = () => {
   const Sources = [
@@ -18,6 +19,7 @@ const createSources = () => {
     BankOfNorway,
     EuropeanCentralBank,
     BankOfRomania,
+    BankOfBulgaria,
   ];
 
   const sources = Sources.reduce((result, Source) => {
@@ -84,16 +86,16 @@ const createSources = () => {
     let nbase;
     let nquote;
     let namount = bn(1);
-    if(!quote){
+    if (!quote) {
       nbase = toSymbolKey(amount);
       nquote = toSymbolKey(base);
       namount = bn(1);
-    }else{
+    } else {
       nbase = toSymbolKey(base);
       nquote = toSymbolKey(quote);
       namount = bn(amount);
     }
-    if(!matrix[nbase] || !matrix[nbase][nquote]){
+    if (!matrix[nbase] || !matrix[nbase][nquote]) {
       return bn(0).toFixed(8);
     }
     return namount.multipliedBy(matrix[nbase][nquote]).toFixed(8);
@@ -109,5 +111,6 @@ module.exports = {
   BankOfNorway,
   EuropeanCentralBank,
   BankOfRomania,
+  BankOfBulgaria,
   createSources,
 };
