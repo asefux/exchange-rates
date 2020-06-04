@@ -3,6 +3,32 @@
 gather exchange-rates from muiltiplie national banks
 
 
+## Usage
+
+```javascript
+const { source: { createSources } } = require('@asefux/exchange-rates');
+
+const rates = createSources();
+
+rates.matrix()
+.then((ratesMatrix)=>{
+        console.log(JSON.stringify(ratesMatrix, null, 2));
+});
+
+
+```
+Rates matrix of this format
+
+```javascript
+
+{
+        [base]: {
+                [quote]: price
+        }
+}
+// how much quote would you get for 1 unit of base
+```
+
 ## Sources
 
 - [x] [Bank of Canada / Banqueu du Canada](https://www.bankofcanada.ca/)
@@ -14,7 +40,6 @@ gather exchange-rates from muiltiplie national banks
 - [x] [Bank of Romania / Banca Nationala a Romaniei](https://www.bnro.ro/Home.aspx)
 - [ ] [Bank of Hungary / Magyar Nemzeti Bank](https://www.mnb.hu/en/)
 - [ ] [Bank of Bulgaria](http://www.bnb.bg/?toLang=_EN)
-- [ ] [Bank of Finland / Suomen Pankki](https://www.suomenpankki.fi/en/)
 - [ ] [Bank of Netherlands / De Nederlandsche Bank](https://www.dnb.nl/en/)
 - [ ] [Bank of England](https://www.bankofengland.co.uk/)
 - [ ] [Bank of France / Banque de France](https://www.banque-france.fr/en)
@@ -46,5 +71,8 @@ gather exchange-rates from muiltiplie national banks
 - [ ] [Central Bank of Brasil / Banco Central Do Brasil](https://www.bcb.gov.br/en)
 - [ ] [Bank of Chile / Banco Central de Chile](https://www.bcentral.cl/en/web/banco-central)
 
+---
+
+- [ ] [Bank of Finland / Suomen Pankki](https://www.suomenpankki.fi/en/) - same as ECB
 
 - [ ] [Others](https://www.bis.org/cbanks.htm)
