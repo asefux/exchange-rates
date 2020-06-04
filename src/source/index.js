@@ -1,4 +1,4 @@
-const { bn } = require('@asefux/common');
+const { bn, string: { toSymbolKey } } = require('@asefux/common');
 
 const Base = require('./base');
 const BankOfCanada = require('./bank-of-canada');
@@ -78,6 +78,25 @@ const createSources = () => {
         [quote]: observations.reduce((s, p) => s.plus(p), bn(0)).dividedBy(observations.length).toFixed(digits),
       }), {}),
     }), {});
+  };
+  sources.rate = async (amount, base, quote = null) => {
+    const matrix = await sources.matrix();
+    let nbase;
+    let nquote;
+    let namount = bn(1);
+    if(!quote){
+      nbase = toSymbolKey(amount);
+      nquote = toSymbolKey(base);
+      namount = bn(1);
+    }else{
+      nbase = toSymbolKey(base);
+      nquote = toSymbolKey(quote);
+      namount = bn(amount);
+    }
+    if(!matrix[nbase] || !matrix[nbase][nquote]){
+      return bn(0).toFixed(8);
+    }
+    return namount.multipliedBy(matrix[nbase][nquote]).toFixed(8);
   };
   return sources;
 };

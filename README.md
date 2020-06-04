@@ -6,14 +6,17 @@ gather exchange-rates from muiltiplie national banks
 ## Usage
 
 ```javascript
-const { source: { createSources } } = require('@asefux/exchange-rates');
+const ExchangeRates = require('@asefux/exchange-rates');
 
-const rates = createSources();
+const exchangeRates = ExchangeRates();
 
-rates.matrix()
+exchangeRates.matrix()
 .then((ratesMatrix)=>{
         console.log(JSON.stringify(ratesMatrix, null, 2));
 });
+
+exchangeRates.rate(10, 'eur', 'usd').then(console.log); // will output how much USD is 10 EUR
+
 
 
 ```
