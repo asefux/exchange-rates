@@ -7,6 +7,7 @@ const BankOfEstonia = require('./eesti-pank');
 const BankOfSweden = require('./bank-of-sweden');
 const BankOfNorway = require('./bank-of-norway');
 const EuropeanCentralBank = require('./european-central-bank');
+const BankOfRomania = require('./bank-of-romania');
 
 const createSources = () => {
   const Sources = [
@@ -16,6 +17,7 @@ const createSources = () => {
     BankOfSweden,
     BankOfNorway,
     EuropeanCentralBank,
+    BankOfRomania,
   ];
 
   const sources = Sources.reduce((result, Source) => {
@@ -86,5 +88,7 @@ module.exports = {
   DanmarkNationalBank,
   BankOfSweden,
   BankOfNorway,
+  EuropeanCentralBank,
+  BankOfRomania,
   createSources,
 };
