@@ -1,6 +1,5 @@
 const source = require('./src/source');
+const { createSources } = source;
 
-module.exports = {
-  source,
-
-};
+createSources.source = source;
+module.exports = createSources;
