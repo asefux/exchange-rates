@@ -1,4 +1,4 @@
-const { string: { toSymbolKey } } = require('@asefux/common');
+const { string: { toSymbolKey }, uuid } = require('@asefux/common');
 
 class SourceBase {
   constructor({
@@ -6,13 +6,19 @@ class SourceBase {
     quote,
     timeShift = 0,
     maxCacheTime = 4 * 3600 * 1000,
+    decimals = 8,
   }) {
     this._symbol = toSymbolKey(symbol || `source-${uuid.v4().split('-')[0]}`);
-    this._timeShift = timeShift;
+    this._timeShift = timeShift - 24 * 3600 * 1000;
     this._quote = toSymbolKey(quote);
     this._matrix = {};
     this.lastFetched = null;
     this.maxCacheTime = maxCacheTime;
+    this._decimals = 8;
+  }
+
+  get decimals() {
+    return this._decimals;
   }
 
   get symbol() {
@@ -30,6 +36,11 @@ class SourceBase {
   get nowDate() {
     const [date] = this.now.toISOString().split('T');
     return date;
+  }
+
+  get nowComponents() {
+    const [fullYear, month, day] = this.nowDate.split('-');
+    return { fullYear, month, day };
   }
 
   get quote() {

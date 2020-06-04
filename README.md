@@ -8,7 +8,7 @@ gather exchange-rates from muiltiplie national banks
 - [x] [Bank of Canada / Banqueu du Canada](https://www.bankofcanada.ca/)
 - [x] [Danmark National Bank](http://www.nationalbanken.dk/en)
 - [x] [Bank of Estonia / Eesti Pank](https://eestipank.ee/en)
-- [ ] [Bank of Sweden / Sveriges Riksbank](https://www.riksbank.se/en-gb/)
+- [x] [Bank of Sweden / Sveriges Riksbank](https://www.riksbank.se/en-gb/)
 - [ ] [Bank of Norway / Norges Bank](https://www.norges-bank.no/en/)
 - [ ] [Bank of Finland / Suomen Pankki](https://www.suomenpankki.fi/en/)
 - [ ] [Bank of Netherlands / De Nederlandsche Bank](https://www.dnb.nl/en/)

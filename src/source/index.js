@@ -4,10 +4,12 @@ const Base = require('./base');
 const BankOfCanada = require('./bank-of-canada');
 const DanmarkNationalBank = require('./danmark-national-bank');
 const BankOfEstonia = require('./eesti-pank');
+const BankOfSweden = require('./bank-of-sweden');
 
 const createSources = () => {
   const Sources = [
     BankOfCanada, DanmarkNationalBank, BankOfEstonia,
+    BankOfSweden,
   ];
 
   const sources = Sources.reduce((result, Source) => {
@@ -25,7 +27,7 @@ const createSources = () => {
       }
     });
   };
-  sources.matrix = async (digits = 4) => {
+  sources.matrix = async (digits = 8) => {
     const listOfMatrices = await Object.values(sources).reduce(async (pr, v) => {
       const prevR = await pr;
       let info = null;
@@ -76,5 +78,6 @@ module.exports = {
   Base,
   BankOfCanada,
   DanmarkNationalBank,
+  BankOfSweden,
   createSources,
 };

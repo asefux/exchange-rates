@@ -25,12 +25,12 @@ class Source extends Base {
       ...r,
       [toSymbolKey(base)]: {
         ...(r[toSymbolKey(base)] || {}),
-        [this.quote]: bn(rate).dividedBy(this.deno).toFixed(4),
+        [this.quote]: bn(rate).dividedBy(this.deno).toFixed(this.decimals),
 
       },
       [this.quote]: {
         ...(r[this.quote] || {}),
-        [toSymbolKey(base)]: bn(1).dividedBy(bn(rate).dividedBy(this.deno)).toFixed(4),
+        [toSymbolKey(base)]: bn(1).dividedBy(bn(rate).dividedBy(this.deno)).toFixed(this.decimals),
       },
     }), {});
   }

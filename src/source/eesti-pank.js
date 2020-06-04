@@ -26,12 +26,12 @@ class Source extends Base {
       ...r,
       [this.quote]: {
         ...(r[this.quote] || {}),
-        [toSymbolKey(base)]: bn(rate).toFixed(4),
+        [toSymbolKey(base)]: bn(rate).toFixed(this.decimals),
 
       },
       [toSymbolKey(base)]: {
         ...(r[toSymbolKey(base)] || {}),
-        [this.quote]: this.deno.dividedBy(rate).toFixed(4),
+        [this.quote]: this.deno.dividedBy(rate).toFixed(this.decimals),
       },
     });
     const merged = elements.reduce(reducer.bind(this), {});

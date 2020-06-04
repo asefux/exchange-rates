@@ -5,7 +5,7 @@ const Base = require('./base');
 
 class Source extends Base {
   constructor() {
-    super({ symbol: 'bank-of-canada', quote: 'CAD', timeShift: -24 * 3600 * 1000 });
+    super({ symbol: 'bank-of-canada', quote: 'CAD' });
     this.url = 'https://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json?start_date=${todayDate}';
   }
 
@@ -31,7 +31,7 @@ class Source extends Base {
         [toSymbolKey(currency)]: { [this.quote]: value.v },
         [this.quote]: {
           ...(r[this.quote] || {}),
-          [toSymbolKey(currency)]: bn(1).dividedBy(value.v).toFixed(4),
+          [toSymbolKey(currency)]: bn(1).dividedBy(value.v).toFixed(this.decimals),
         },
       };
     }, {});
