@@ -89,3 +89,4 @@ Rates matrix of this format
 | 1.0.0       | initial code    |
 | 1.0.1       | update api      |
 | 1.1.0       | Bank of Bulgaria|
+| 1.1.1       | on weekends get rates of last working day|
