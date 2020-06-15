@@ -31,11 +31,29 @@ class SourceBase {
   }
 
   get now() {
+    const today = new Date();
+    if (today.getDay() > 5) {
+      const shifting = today.getDay() - 5;
+      console.log(`shifting ${shifting} days`);
+      return new Date(today.getTime() - shifting * 24 * 3600 * 1000);
+    }
+    if (today.getDay() === 1) {
+      const shifting = 3;
+      console.log(`shifting ${shifting} days`);
+      return new Date(today.getTime() - shifting * 24 * 3600 * 1000);
+    }
+    if (today.getDay() === 0) {
+      const shifting = 2;
+      console.log(`shifting ${shifting} days`);
+      return new Date(today.getTime() - shifting * 24 * 3600 * 1000);
+    }
+    console.log(`regular week day ${today.getDay()}`);
     return new Date(Date.now() + this.timeShift);
   }
 
   get nowDate() {
     const [date] = this.now.toISOString().split('T');
+
     return date;
   }
 
